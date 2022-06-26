@@ -32,7 +32,6 @@ scrapers:
       storages:
       - type: json
         path: ./test.json
-        indent: "   "
         incomplete: false
         template:
         - value: headline
