@@ -80,12 +80,12 @@ func newJsonStorage(cnf map[string]interface{}) Storage {
 	// set indent
 	if indent, ok := cnf["indent"]; ok {
 		storage.Indent = indent.(string)
+	} else {
+		storage.Prefix = ""
 	}
 	// set prefix
 	if prefix, ok := cnf["prefix"]; ok {
 		storage.Prefix = prefix.(string)
-	} else {
-		storage.Prefix = "   "
 	}
 	// set template
 	storage.StoreIncomplete = cnf["incomplete"].(bool)
