@@ -15,6 +15,8 @@ type JsonItem struct {
 type JsonStorage struct {
 	Path            string
 	Name            string
+	Indent          string
+	Prefix          string
 	Template        []JsonItem
 	StoreIncomplete bool
 	JsonData        map[string]interface{}
@@ -34,7 +36,7 @@ func (s *JsonStorage) Open() error {
 
 func (s *JsonStorage) Close() error {
 	defer s.File.Close()
-	j, err := json.Marshal(s.JsonData)
+	j, err := json.MarshalIndent(s.JsonData, s.Prefix, s.Indent)
 	if err != nil {
 		log.Errorf("failed to marshal json '%s' with error", s.Name, err)
 		return errors.New("failed to marshal json")
@@ -74,6 +76,16 @@ func newJsonStorage(cnf map[string]interface{}) Storage {
 		storage.Name = name.(string)
 	} else {
 		storage.Name = cnf["type"].(string)
+	}
+	// set indent
+	if indent, ok := cnf["indent"]; ok {
+		storage.Indent = indent.(string)
+	}
+	// set prefix
+	if prefix, ok := cnf["prefix"]; ok {
+		storage.Prefix = prefix.(string)
+	} else {
+		storage.Prefix = "   "
 	}
 	// set template
 	storage.StoreIncomplete = cnf["incomplete"].(bool)

@@ -15,6 +15,14 @@
         "path": {
             "type": "string"
         },
+        "indent": {
+            "type": "string",
+            "default": ""
+        },
+        "prefix": {
+            "type": "string",
+            "default": ""
+        },
         "template": {
             "type": "array",
             "anyOf": [
