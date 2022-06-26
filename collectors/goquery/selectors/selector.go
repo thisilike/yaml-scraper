@@ -20,6 +20,7 @@ func init() {
 	log = config.Logger
 	SelectorRegister = make(map[string]func(cnf map[string]interface{}) Selector)
 	RegisterExtractor("css", newCssSelectorFunc)
+	RegisterExtractor("position", newPositionSelector)
 }
 
 func RegisterExtractor(name string, newSelectorFunc func(cnf map[string]interface{}) Selector) error {

@@ -15,7 +15,8 @@
             "type": "array",
             "items": {
                 "anyOf": [
-                    {"$ref": "./selectors/css.json"}
+                    {"$ref": "./selectors/css.json"},
+                    {"$ref": "./selectors/position.json"}
                 ]
             }
         },

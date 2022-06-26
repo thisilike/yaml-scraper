@@ -1,0 +1,19 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "index-selector-goquerry",
+    "description": "",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "type": {
+            "const": "position"
+        },
+        "index": {
+            "type": "integer"
+        }
+    },
+    "required": [
+        "type",
+        "index"
+    ]
+}

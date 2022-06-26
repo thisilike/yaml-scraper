@@ -25,6 +25,8 @@ scrapers:
         selectors:
         - type: css
           selectorString: p
+        - type: position
+          index: 0
         extractor:
           type: text
       storages:
