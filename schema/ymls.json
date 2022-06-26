@@ -1,0 +1,19 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "./ymls.json",
+    "title": "ymls schema",
+    "description": "ymls schema for auto completion",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "scrapers": {
+            "type": "array",
+            "items": {
+                "$ref": "./scraper.json"
+            }
+        }
+    },
+    "required": ["scrapers"],
+    "$defs": {
+    }
+}

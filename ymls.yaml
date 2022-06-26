@@ -1,0 +1,36 @@
+# yaml-language-server: $schema=./schema/ymls.json
+
+scrapers:
+  - name: scraper1
+    maxWorkers: 1
+    delay: 50
+    urls: 
+    - https://example.com/
+    getters:
+    - type: go-http
+      name: only getter
+      retrys: 3
+      delay: 100
+    processors:
+    - collectors:
+      - type: go-query
+        name: headline
+        selectors:
+        - type: css
+          selectorString: h1
+        extractor: 
+          type: text
+      - type: go-query
+        name: text
+        selectors:
+        - type: css
+          selectorString: p
+        extractor:
+          type: text
+      storages:
+      - type: json
+        path: ./test.json
+        incomplete: false
+        template:
+        - value: headline
+        - value: text

@@ -1,0 +1,15 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "text-extractor-goquerry",
+    "description": "",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "type": {
+            "const": "text"
+        }
+    },
+    "required": [
+        "type"
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "trim-space-transformation",
+    "description": "removes white spaces from string (front, back, both)",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "action": {
+            "const": "trim-space"
+        },
+        "mode": {
+            "type": "string",
+            "enum": ["prefix", "double", "suffix"]
+        }
+    },
+    "required": [
+        "action"
+    ]
+}

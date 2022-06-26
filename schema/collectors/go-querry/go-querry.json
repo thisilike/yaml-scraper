@@ -1,0 +1,34 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "go-querry",
+    "description": "",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "type": {
+            "const": "go-query"
+        },
+        "name": {
+            "type": "string"
+        },
+        "selectors": {
+            "type": "array",
+            "items": {
+                "anyOf": [
+                    {"$ref": "./selectors/css.json"}
+                ]
+            }
+        },
+        "extractor": {
+            "anyOf": [
+                {"$ref": "./extractors/text.json"}
+            ]
+        }
+    },
+    "required": [
+        "type",
+        "name",
+        "selectors",
+        "extractor"
+    ]
+}
