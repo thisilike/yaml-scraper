@@ -91,12 +91,7 @@ func (scraper *Scraper) Start() error {
 	pool.StopAndWait()
 
 	log.Infof(
-		"Scraper: '%s' with urls 1:'%s' and %s:'%s' finished!",
-		scraper.Name,
-		scraper.Urls[0],
-		len(scraper.Urls),
-		scraper.Urls[len(scraper.Urls)-1],
-	)
+		"Scraper: '%s' finished!", scraper.Name)
 	return nil
 }
 

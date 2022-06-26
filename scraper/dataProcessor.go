@@ -56,15 +56,15 @@ func (p *Processor) Process(sourceData []byte, url string) error {
 	p.Data["sourceUrl"] = url
 	err := p.Collect(sourceData)
 	if err != nil {
-		log.Error("collecting data incomplete '%s'", err)
+		log.Errorf("collecting data incomplete '%s'", err)
 	}
 	err = p.Transform()
 	if err != nil {
-		log.Error("transforming data incomplete '%s'", err)
+		log.Errorf("transforming data incomplete '%s'", err)
 	}
 	err = p.Store()
 	if err != nil {
-		log.Error("storing data incomplete '%s'", err)
+		log.Errorf("storing data incomplete '%s'", err)
 	}
 	return nil
 }
@@ -82,23 +82,28 @@ func (p *Processor) Transform() error {
 }
 
 func (p *Processor) Collect(data []byte) error {
+	var err error
 	for _, collector := range p.Collectors {
 		// open
-		err := collector.Open()
+		err = collector.Open()
 		if err != nil {
 			log.Errorf("failed to open collector '%s'", collector.GetName())
 		}
 		defer collector.Close()
 
 		// collect
-		collData, err := collector.Collect(data)
+		var collData interface{}
+		collData, err = collector.Collect(data)
 		if err != nil {
 			log.Errorf("failed to collect data with '%s'", collector.GetName())
 			continue
 		}
 		p.Data[collector.GetName()] = collData
 	}
-	return errors.New("storing data incomplete")
+	if err != nil {
+		return errors.New("collecting data incomplete")
+	}
+	return nil
 }
 
 func (p *Processor) Store() error {
@@ -111,7 +116,10 @@ func (p *Processor) Store() error {
 			continue
 		}
 	}
-	return errors.New("stroging is incomplete")
+	if err != nil {
+		return errors.New("storing is incomplete")
+	}
+	return nil
 }
 
 func NewProcessor(cnf map[string]interface{}) Processor {
