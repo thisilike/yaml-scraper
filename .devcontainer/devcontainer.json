@@ -2,8 +2,8 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.238.0/containers/go
 {
 	"name": "Go",
-    "workspaceMount": "src=${localWorkspaceFolder},dst=/go/src/github.com/thisilike/ymls,type=bind",
-    "workspaceFolder": "/go/src/github.com/thisilike/ymls",
+    "workspaceMount": "src=${localWorkspaceFolder},dst=/go/src/github.com/thisilike/yaml-scraper,type=bind",
+    "workspaceFolder": "/go/src/github.com/thisilike/yaml-scraper",
 	"build": {
 		"dockerfile": "Dockerfile",
 		"args": {
